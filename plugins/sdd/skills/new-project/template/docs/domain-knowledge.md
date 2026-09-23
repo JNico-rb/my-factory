@@ -1,7 +1,7 @@
 # domain-knowledge.md
 
-Lo que hay que entender del dominio con independencia de cómo se construya el sistema: por qué funciona como funciona. Las entidades se definen en `definitions.md`; las decisiones de diseño, en `architecture.md`.
+What needs to be understood about the domain regardless of how the system is built: why it works the way it does. Entities are defined in `definitions.md`; design decisions, in `architecture.md`.
 
 ---
 
-<!-- GAP: lo que sabe un experto del dominio y un desarrollador no (reglas, oficio, normativa), una sección numerada por tema. Si el dominio no tiene nada así, se borra este fichero y su línea en AGENTS.md. -->
+<!-- GAP: what a domain expert knows and a developer doesn't (rules, craft, regulation), one numbered section per topic. If the domain has nothing like that, delete this file and its line in AGENTS.md. -->

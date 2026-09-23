@@ -20,8 +20,10 @@ Projects created that way declare this marketplace in their `.claude/settings.js
 ```
 my-factory/
 ├── .claude-plugin/marketplace.json   # the marketplace: which plugins exist, where each lives
+├── .claude/                          # agents and scripts I use inside this repo: no install ships them
 ├── plugins/
 │   └── sdd/                          # a plugin: only this folder reaches an install
+├── resources/                        # links I keep for reference: no install ships them
 └── drafts/                           # not shipped yet, each with its reason
 ```
 

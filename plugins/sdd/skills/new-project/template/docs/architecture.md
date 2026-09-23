@@ -1,36 +1,36 @@
 # architecture.md
 
-Decisiones de diseño de la solución y su porqué. El vocabulario está en `definitions.md`; las razones de dominio, en `domain-knowledge.md`; cómo se verifica, en `verification.md`.
+The solution's design decisions and their why. The vocabulary is in `definitions.md`; the domain reasons, in `domain-knowledge.md`; how it is verified, in `verification.md`.
 
 ---
 
-## 1. Contexto
+## 1. Context
 
-<!-- GAP: qué problema resuelve, para quién, y qué queda fuera. -->
+<!-- GAP: what problem it solves, for whom, and what is left out. -->
 
-## 2. Componentes y flujo
+## 2. Components and flow
 
-<!-- GAP: las piezas principales y cómo recorre un caso de uso típico. -->
+<!-- GAP: the main pieces and how a typical use case goes through them. -->
 
 ## 3. Stack
 
-<!-- GAP: lenguajes, frameworks, persistencia, gestor de paquetes, lint, tipos y tests, con el porqué de cada elección que tuvo alternativa real. -->
+<!-- GAP: languages, frameworks, persistence, package manager, lint, types and tests, with the why of every choice that had a real alternative. -->
 
 ---
 
-## Decisiones abiertas
+## Open decisions
 
-Cada una con su pregunta, las opciones en juego y lo que bloquea. Al cerrarse sale de aquí y entra en *Decisiones cerradas*, con su motivo en la sección que la posee ([proceso 1](../workflow/1-docs.md), paso 3).
+Each one with its question, the options at stake and what it blocks. When closed it leaves here and enters *Closed decisions*, with its reason in the section that owns it ([process 1](../workflow/1-docs.md), step 3).
 
-<!-- GAP: las decisiones que el grill deje abiertas, una por `###`. Si no queda ninguna: «Ninguna por ahora.» -->
+<!-- GAP: the decisions the grill leaves open, one per `###`. If none remain: "None for now." -->
 
-## Decisiones cerradas
+## Closed decisions
 
-Registro de lo acordado, para no reabrirlo sin motivo.
+Record of what was agreed, so it is not reopened without reason.
 
-| Decisión | Valor | Dónde se razona |
+| Decision | Value | Where it is reasoned |
 |---|---|---|
 
-## Pendiente
+## Pending
 
-Lo identificado que todavía no tiene sitio propio. Se vacía a medida que cada punto pasa a una sección, a una spec o a `verification.md`.
+What has been identified but does not have its own place yet. It empties as each point moves to a section, a spec or `verification.md`.

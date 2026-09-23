@@ -53,8 +53,8 @@ Done when grill-me's closing confirmation is accepted.
 Write each answer where its gap sits, replacing the comment, in the file's language:
 
 - **Answered** → the content itself.
-- **Still open** → an entry under `docs/architecture.md`, *Decisiones abiertas*, one `###` each: the question, the options, what it blocks.
-- **Chosen over a real alternative** (a database, a framework) → a row in *Decisiones cerradas*, with its reason in the section that owns it.
+- **Still open** → an entry under `docs/architecture.md`, *Open decisions*, one `###` each: the question, the options, what it blocks.
+- **Chosen over a real alternative** (a database, a framework) → a row in *Closed decisions*, with its reason in the section that owns it.
 - **No domain knowledge to record** → delete `docs/domain-knowledge.md` and its line in `AGENTS.md`.
 - **A code directory** → create it with an `AGENTS.md` holding one line: `Read [../AGENTS.md](../AGENTS.md) first.`
 

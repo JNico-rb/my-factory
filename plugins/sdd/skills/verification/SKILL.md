@@ -1,86 +1,86 @@
 ---
 name: verification
-description: Genera o actualiza `verification.md`, el plan de verificación del proyecto — qué se verifica, con qué técnica y con qué clasificación T/A/I/D/U. Úsala cuando el usuario pida "plan de verificación", "verification.md", "cómo verificamos esto", "cómo sabemos que el código o la salida del agente es correcta", o al cerrar un spec y decidir la estrategia de pruebas.
+description: Generates or updates `verification.md`, the project's verification plan — what is verified, with which technique and with which T/A/I/D/U classification. Use it when the user asks for a "verification plan", "verification.md", "how do we verify this", "how do we know the code or the agent's output is correct", or when closing a spec and deciding the testing strategy.
 ---
 
-# Plan de verificación
+# Verification plan
 
-Produces **un documento**: `docs/verification.md` (o uno junto al spec,
-si el usuario lo pide para una feature concreta). No
-implementas las pruebas; decides y documentas **cómo se verifica cada
-cosa y quién lo hace**.
+You produce **one document**: `docs/verification.md` (or one next to the spec,
+if the user asks for it for a specific feature). You do not
+implement the tests; you decide and document **how each thing is
+verified and who does it**.
 
-La taxonomía completa de técnicas y el marco de clasificación están en
-[references/taxonomia.md](references/taxonomia.md). **Léela antes de
-escribir nada.**
+The full taxonomy of techniques and the classification framework are in
+[references/taxonomia.md](references/taxonomia.md). **Read it before
+writing anything.**
 
-## Protocolo
+## Protocol
 
-1. Lee `docs/architecture.md` y la spec de la feature en curso,
-   `specs/NNN-slug/spec.md` (las specs viven en la raíz del repo, no
-   dentro de `docs/`). Si no hay nada de eso, pregunta al usuario
-   qué se está construyendo antes de inventar.
-2. Inventaria **lo que hay que verificar**, en dos bloques separados:
-   - **Código** — módulos, interfaces entre servicios, invariantes de
-     datos.
-   - **Agentes** — cada agente de `.claude/agents/`, sus herramientas,
-     su salida y los puntos donde puede hacer daño.
-3. Para cada elemento, elige **una técnica** de la taxonomía y
-   **exactamente una letra** del marco T/A/I/D/U. Si dos técnicas
-   aplican, elige la más barata que dé la garantía necesaria y menciona
-   la otra como refuerzo opcional.
-4. Todo elemento que **no** se pueda verificar se clasifica `U` y se
-   escribe en la tabla igual que los demás. Un riesgo aceptado se
-   nombra; no se omite.
-5. Escribe `docs/verification.md` con el formato de abajo.
-6. Termina con una línea en chat: `verification.md -> <n> elementos, <m> en U`.
+1. Read `docs/architecture.md` and the spec of the feature in progress,
+   `specs/NNN-slug/spec.md` (specs live at the repo root, not
+   inside `docs/`). If none of that exists, ask the user
+   what is being built before inventing.
+2. Inventory **what needs to be verified**, in two separate blocks:
+   - **Code** — modules, interfaces between services, data
+     invariants.
+   - **Agents** — each agent in `.claude/agents/`, its tools,
+     its output and the points where it can do harm.
+3. For each element, pick **one technique** from the taxonomy and
+   **exactly one letter** from the T/A/I/D/U framework. If two techniques
+   apply, pick the cheapest one that gives the required guarantee and mention
+   the other as optional reinforcement.
+4. Every element that **cannot** be verified is classified `U` and is
+   written in the table like the rest. An accepted risk is
+   named; it is not omitted.
+5. Write `docs/verification.md` in the format below.
+6. End with one line in chat: `verification.md -> <n> elements, <m> in U`.
 
-## Formato de salida
+## Output format
 
 ```markdown
 # verification.md
 
-## Marco de clasificación (T/A/I/D/U)
-<La tabla de las cinco clases. Si el documento ya la tiene, se conserva tal cual.>
+## Classification framework (T/A/I/D/U)
+<The table of the five classes. If the document already has it, keep it as is.>
 
-## Alcance
-<Qué cubre este plan y qué queda explícitamente fuera.>
+## Scope
+<What this plan covers and what is explicitly left out.>
 
-## Verificación de código
+## Code verification
 
-| # | Qué se verifica | Técnica | Clase | Herramienta / dónde vive |
+| # | What is verified | Technique | Class | Tool / where it lives |
 |---|---|---|---|---|
-| V1 | `parse_outline()` nunca recibe tipos inválidos | Type checking | A | mypy en CI |
-| V2 | RF-REC-3: límite por defecto = 20 | Unit test | T | `tests/test_recent.py` |
+| V1 | `parse_outline()` never receives invalid types | Type checking | A | mypy in CI |
+| V2 | FR-REC-3: default limit = 20 | Unit test | T | `tests/test_recent.py` |
 
-## Verificación de proceso (agentes)
+## Process verification (agents)
 
-| # | Qué se verifica | Técnica | Clase | Herramienta / dónde vive |
+| # | What is verified | Technique | Class | Tool / where it lives |
 |---|---|---|---|---|
-| P1 | El implementador no escribe fuera de `src/` | Guardrails | A | permisos en `settings.json` |
-| P2 | Calidad de la salida generada | Eval LLM-as-judge | I | `evals/coherencia.yaml` |
+| P1 | The implementer does not write outside `src/` | Guardrails | A | permissions in `settings.json` |
+| P2 | Quality of the generated output | Eval LLM-as-judge | I | `evals/coherence.yaml` |
 
-## Riesgos aceptados (U)
+## Accepted risks (U)
 
-| # | Qué no se verifica | Por qué | Mitigación parcial |
+| # | What is not verified | Why | Partial mitigation |
 |---|---|---|---|
-| U1 | Coste real en producción a 10k usuarios | No hay entorno equivalente | Rollout progresivo al 5% |
+| U1 | Real production cost at 10k users | No equivalent environment | Progressive rollout at 5% |
 
-## Puertas de calidad
-<Qué tiene que estar verde para aprobar un cambio: los comandos del
-Stack de `AGENTS.md`, cobertura de cada requisito de clase T, revisión
-humana en los puntos `I`.>
+## Quality gates
+<What has to be green to approve a change: the commands from the
+Stack in `AGENTS.md`, coverage of every class T requirement, human
+review at the `I` points.>
 ```
 
-## Reglas duras
+## Hard rules
 
-- ❌ Nunca dejes un elemento sin clase. Si no sabes, es `U` con una
-  razón escrita.
-- ❌ Nunca propongas formal verification o symbolic execution "porque
-  suena riguroso". Justifica el coste o no lo pongas.
-- ❌ Nunca escribas tests ni configures herramientas desde esta skill.
-  Solo el plan.
-- ✅ Cada fila apunta a un archivo o comando concreto, existente o por
-  crear. Nada de "tests unitarios" a secas.
-- ✅ Si el proyecto ya tiene `verification.md`, actualízalo preservando
-  la numeración `V<n>` / `P<n>` / `U<n>` existente.
+- ❌ Never leave an element without a class. If you don't know, it is `U` with a
+  written reason.
+- ❌ Never propose formal verification or symbolic execution "because
+  it sounds rigorous". Justify the cost or leave it out.
+- ❌ Never write tests or configure tools from this skill.
+  Only the plan.
+- ✅ Every row points to a concrete file or command, existing or to be
+  created. No bare "unit tests".
+- ✅ If the project already has `verification.md`, update it preserving
+  the existing `V<n>` / `P<n>` / `U<n>` numbering.

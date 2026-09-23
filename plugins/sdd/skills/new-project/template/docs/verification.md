@@ -1,43 +1,43 @@
 # verification.md
 
-Cómo se comprueba que **el código es correcto** y que **los agentes se comportan de forma fiable**. El vocabulario está en `definitions.md`; las decisiones de diseño, en `architecture.md`. Lo redacta y lo mantiene la skill `sdd:verification`.
+How we check that **the code is correct** and that **the agents behave reliably**. The vocabulary is in `definitions.md`; the design decisions, in `architecture.md`. Written and maintained by the `sdd:verification` skill.
 
 ---
 
-## Marco de clasificación (T/A/I/D/U)
+## Classification framework (T/A/I/D/U)
 
-Todo requisito, invariante o componente recibe **una letra**. La letra dice *cómo* se gana la confianza, no *cuánta*.
+Every requirement, invariant or component gets **one letter**. The letter says *how* confidence is earned, not *how much*.
 
-| Clase | Nombre | Se verifica… |
+| Class | Name | Verified by… |
 |---|---|---|
-| **T** | Test | Ejecutando el sistema con entradas concretas |
-| **A** | Analysis | Razonando estáticamente: tipos, análisis estático, ejecución simbólica, prueba formal |
-| **I** | Inspection | Leyendo y juzgando: una persona o un modelo crítico |
-| **D** | Demonstration | Observando la operación correcta en un escenario realista |
-| **U** | Unverifiable | No hay método aplicable, o no compensa su coste |
+| **T** | Test | Running the system with concrete inputs |
+| **A** | Analysis | Reasoning statically: types, static analysis, symbolic execution, formal proof |
+| **I** | Inspection | Reading and judging: a person or a critic model |
+| **D** | Demonstration | Observing correct operation in a realistic scenario |
+| **U** | Unverifiable | No applicable method, or not worth its cost |
 
-- **U es una decisión, no un olvido.** Se escribe en *Riesgos aceptados (U)* con nombre y motivo.
-- **La letra no es un ascenso.** A no es «mejor» que T: se elige el método más barato que dé la garantía necesaria.
+- **U is a decision, not an oversight.** It is written under *Accepted risks (U)* with name and reason.
+- **The letter is not a promotion.** A is not "better" than T: pick the cheapest method that gives the required guarantee.
 
-## Alcance
+## Scope
 
-Se redacta con la skill `sdd:verification` al escribir la primera spec.
+Written with the `sdd:verification` skill when writing the first spec.
 
-## Verificación de código
+## Code verification
 
-| # | Qué se verifica | Técnica | Clase | Herramienta / dónde vive |
+| # | What is verified | Technique | Class | Tool / where it lives |
 |---|---|---|---|---|
 
-## Verificación de proceso (agentes)
+## Process verification (agents)
 
-| # | Qué se verifica | Técnica | Clase | Herramienta / dónde vive |
+| # | What is verified | Technique | Class | Tool / where it lives |
 |---|---|---|---|---|
 
-## Riesgos aceptados (U)
+## Accepted risks (U)
 
-| # | Qué no se verifica | Por qué | Mitigación parcial |
+| # | What is not verified | Why | Partial mitigation |
 |---|---|---|---|
 
-## Puertas de calidad
+## Quality gates
 
-<!-- GAP: los comandos que tienen que estar en verde para aprobar un cambio (los de lint, tipos y tests del Stack de AGENTS.md). -->
+<!-- GAP: the commands that have to be green to approve a change (the lint, type and test ones from the Stack in AGENTS.md). -->

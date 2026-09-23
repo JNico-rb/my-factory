@@ -3,7 +3,7 @@
 Per step of the approved `plan.md`: write the test → run it and watch it fail **for the right reason** → minimum code to pass, no speculative generality → run the **full** suite → refactor green (tests unchanged) → mark the step `[x]`.
 
 - A bug gets a failing test reproducing it before the fix; that test stays.
-- Only **class T** becomes a test. **A** → strict typing + static analysis, **I** → review, **D** → demonstration run, **U** → `verification.md`, *Riesgos aceptados (U)*.
+- Only **class T** becomes a test. **A** → strict typing + static analysis, **I** → review, **D** → demonstration run, **U** → `verification.md`, *Accepted risks (U)*.
 - Test names state the behaviour, not the function.
 - A red test goes green through code. Never disable, skip or weaken a test for a green run.
 

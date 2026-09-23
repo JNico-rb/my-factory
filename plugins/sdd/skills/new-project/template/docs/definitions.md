@@ -1,13 +1,13 @@
 # definitions.md
 
-<!-- GAP: una frase: el dominio de este proyecto. -->
+<!-- GAP: one sentence: this project's domain. -->
 
-Este documento define **qué entidades existen, qué atributos tienen y cómo se relacionan**, y es la autoridad de nombres: el resto del repositorio usa cada término tal como aparece aquí. Las razones de dominio están en `domain-knowledge.md`; las decisiones de diseño, en `architecture.md`.
+This document defines **which entities exist, which attributes they have and how they relate**, and it is the naming authority: the rest of the repository uses every term exactly as it appears here. The domain reasons are in `domain-knowledge.md`; the design decisions, in `architecture.md`.
 
-Convención: los identificadores van sin acentos ni espacios, para que los diagramas rendericen en cualquier visor de Mermaid.
+Convention: identifiers go without accents or spaces, so diagrams render in any Mermaid viewer.
 
 ---
 
-## 1. Entidades
+## 1. Entities
 
-<!-- GAP: los primeros términos del dominio, uno por `###`: qué es en una o dos frases, sus atributos y con qué se relaciona. Solo los que ya estén claros; el resto entra cuando aparezca (workflow/1-docs.md, paso 2). -->
+<!-- GAP: the first domain terms, one per `###`: what it is in one or two sentences, its attributes and what it relates to. Only the ones already clear; the rest come in when they appear (workflow/1-docs.md, step 2). -->
