@@ -5,8 +5,8 @@ description: Genera o actualiza `verification.md`, el plan de verificación del 
 
 # Plan de verificación
 
-Produces **un documento**: `verification.md` en la raíz del proyecto (o
-junto al spec, si el usuario lo pide para una feature concreta). No
+Produces **un documento**: `docs/verification.md` (o uno junto al spec,
+si el usuario lo pide para una feature concreta). No
 implementas las pruebas; decides y documentas **cómo se verifica cada
 cosa y quién lo hace**.
 
@@ -16,10 +16,10 @@ escribir nada.**
 
 ## Protocolo
 
-1. Lee `docs/architecture.md`, `docs/specs/` y, si existe, el
-   `specs/<name>/requirements.md` de la feature en curso. Si no hay
-   nada de eso, pregunta al usuario qué se está construyendo antes de
-   inventar.
+1. Lee `docs/architecture.md` y la spec de la feature en curso,
+   `specs/NNN-slug/spec.md` (las specs viven en la raíz del repo, no
+   dentro de `docs/`). Si no hay nada de eso, pregunta al usuario
+   qué se está construyendo antes de inventar.
 2. Inventaria **lo que hay que verificar**, en dos bloques separados:
    - **Código** — módulos, interfaces entre servicios, invariantes de
      datos.
@@ -32,13 +32,16 @@ escribir nada.**
 4. Todo elemento que **no** se pueda verificar se clasifica `U` y se
    escribe en la tabla igual que los demás. Un riesgo aceptado se
    nombra; no se omite.
-5. Escribe `verification.md` con el formato de abajo.
+5. Escribe `docs/verification.md` con el formato de abajo.
 6. Termina con una línea en chat: `verification.md -> <n> elementos, <m> en U`.
 
 ## Formato de salida
 
 ```markdown
-# Plan de verificación — <proyecto o feature>
+# verification.md
+
+## Marco de clasificación (T/A/I/D/U)
+<La tabla de las cinco clases. Si el documento ya la tiene, se conserva tal cual.>
 
 ## Alcance
 <Qué cubre este plan y qué queda explícitamente fuera.>
@@ -47,15 +50,15 @@ escribir nada.**
 
 | # | Qué se verifica | Técnica | Clase | Herramienta / dónde vive |
 |---|---|---|---|---|
-| V1 | `parse_outline()` nunca recibe tipos inválidos | Type checking | A | mypy en `./init.sh` |
-| V2 | R3: límite por defecto = 20 | Unit test | T | `tests/test_recent.py` |
+| V1 | `parse_outline()` nunca recibe tipos inválidos | Type checking | A | mypy en CI |
+| V2 | RF-REC-3: límite por defecto = 20 | Unit test | T | `tests/test_recent.py` |
 
 ## Verificación de proceso (agentes)
 
 | # | Qué se verifica | Técnica | Clase | Herramienta / dónde vive |
 |---|---|---|---|---|
 | P1 | El implementador no escribe fuera de `src/` | Guardrails | A | permisos en `settings.json` |
-| P2 | Calidad de la novela generada | Eval LLM-as-judge | I | `evals/coherencia.yaml` |
+| P2 | Calidad de la salida generada | Eval LLM-as-judge | I | `evals/coherencia.yaml` |
 
 ## Riesgos aceptados (U)
 
@@ -64,8 +67,9 @@ escribir nada.**
 | U1 | Coste real en producción a 10k usuarios | No hay entorno equivalente | Rollout progresivo al 5% |
 
 ## Puertas de calidad
-<Qué tiene que estar verde para aprobar un cambio: `./init.sh`,
-cobertura de cada `R<n>`, revisión humana en los puntos `I`.>
+<Qué tiene que estar verde para aprobar un cambio: los comandos del
+Stack de `AGENTS.md`, cobertura de cada requisito de clase T, revisión
+humana en los puntos `I`.>
 ```
 
 ## Reglas duras

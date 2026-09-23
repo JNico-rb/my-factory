@@ -1,0 +1,6 @@
+# IDE
+*.code-workspace
+
+# Secrets
+.env
+.claude/settings.local.json

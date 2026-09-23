@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(.env)",
+      "Read(.claude/settings.local.json)"
+    ]
+  },
+  "extraKnownMarketplaces": {
+    "my-factory": {
+      "source": {
+        "source": "github",
+        "repo": "JNico-rb/my-factory"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "sdd@my-factory": true
+  }
+}
