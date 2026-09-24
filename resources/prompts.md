@@ -3,6 +3,7 @@
 <prompt>
 Necesito empezar a optimizar el uso de tokens en el proyecto. Buscame pulg-ins, herramientas... lo que sea que me pueda ayudar.
 </prompt>
+
 <prompt>
 Investiga las mejores estrategias, proceso de desarrollo de código y herramientas (plugins, skills, etc) para optimizar al máximo el uso de tokens en repositorios con millones de líneas de código.
 </prompt>
@@ -12,9 +13,11 @@ Investiga las mejores estrategias, proceso de desarrollo de código y herramient
 <prompt>
 - Quiero construir una ontología para entender el dominio de una solución de IA que generará novelas de ciencia ficción sobre como será el mundo tras la revolución de la IA. Quiero entender qué necesito gestionar a nivel de contexto y de calidad, su anatomía, etc.
 </prompt>
+
 <prompt>
 - Créame dos documentos: el documento de definiciones y el documento de mermaid o mermaids con el árbol de las ontologías.
 </prompt>
+
 <prompt>
 Please createa a verification.md (to verify that our code and agent output is correct) below all the types I want to consider.
 
