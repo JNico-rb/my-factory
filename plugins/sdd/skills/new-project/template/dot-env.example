@@ -1,0 +1,2 @@
+# Copy to .env and fill in by hand. .env is gitignored and agents are denied reading it.
+# GAP: the environment variables the project reads, one per line with a placeholder value (e.g. ANTHROPIC_API_KEY=YOUR_KEY_HERE). If it reads none, delete this file.

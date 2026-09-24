@@ -3,13 +3,15 @@
   "owner": {
     "name": "JNico-rb"
   },
-  "description": "Personal harness tools for Claude Code: spec-driven development skills and a project template.",
-  "allowCrossMarketplaceDependenciesOn": ["claude-plugins-official"],
+  "description": "Harness engineering for Claude Code: spec-driven development with deterministic guards, process agents and a project template.",
+  "allowCrossMarketplaceDependenciesOn": [
+    "claude-plugins-official"
+  ],
   "plugins": [
     {
       "name": "sdd",
       "source": "./plugins/sdd",
-      "description": "Spec-driven development: scaffold a new project with its docs, specs and workflow layers, grill the user to fill its gaps, chart big efforts, plan verification.",
+      "description": "Spec-driven development with enforced gates: scaffold a project with its docs, specs and workflow layers, grill the user to fill its gaps, guard every write with deterministic hooks, and close each plan through an implementer and an independent verifier.",
       "category": "development"
     }
   ]

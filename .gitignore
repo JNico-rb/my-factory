@@ -1,6 +1,7 @@
 # IDE
 *.code-workspace
 
-# Personal
+# Personal: course material with third-party personal data, drafts of the exam deliverables
 notes*
 presentation/
+project-constraints.md

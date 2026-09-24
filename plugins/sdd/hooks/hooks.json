@@ -1,0 +1,20 @@
+{
+  "description": "Deterministic guards of the sdd harness: no credential-shaped text in any write; no tests or code without an approved plan with an open step.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard-secrets.mjs\""
+          },
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard-plan.mjs\""
+          }
+        ]
+      }
+    ]
+  }
+}

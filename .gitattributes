@@ -1,2 +1,4 @@
 # Shell scripts run through bash, which breaks on CRLF: keep them LF on every checkout.
 *.sh text eol=lf
+# Hooks and their tests are compared byte for byte in CI on Linux.
+*.mjs text eol=lf

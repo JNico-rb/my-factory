@@ -56,7 +56,9 @@ Write each answer where its gap sits, replacing the comment, in the file's langu
 - **Still open** → an entry under `docs/architecture.md`, *Open decisions*, one `###` each: the question, the options, what it blocks.
 - **Chosen over a real alternative** (a database, a framework) → a row in *Closed decisions*, with its reason in the section that owns it.
 - **No domain knowledge to record** → delete `docs/domain-knowledge.md` and its line in `AGENTS.md`.
-- **A code directory** → create it with an `AGENTS.md` holding one line: `Read [../AGENTS.md](../AGENTS.md) first.`
+- **A code directory** → create it with an `AGENTS.md` holding one line: `Read [../AGENTS.md](../AGENTS.md) first.`, then add it to `codeDirs` in `.claude/sdd.json`, in that order: from then on the `guard-plan` hook blocks writes there until a plan is approved. A test directory is a code directory.
+- **Quality gates** → the same commands in `docs/verification.md` *Quality gates* and as steps of the `quality` job in `.github/workflows/ci.yml`.
+- **No environment variables** → delete `.env.example`.
 
 ## 5. Check
 
@@ -66,7 +68,7 @@ Run it as in step 2:
 bash "${CLAUDE_PLUGIN_ROOT}/skills/new-project/check.sh" "<target>"
 ```
 
-It lists every gap left and every relative markdown link that does not resolve. Done when it exits 0: fix what it lists and re-run until then.
+It lists every gap left, an `AGENTS.md` over 200 lines, a code dir in `.claude/sdd.json` that does not exist and every relative markdown link that does not resolve. Done when it exits 0: fix what it lists and re-run until then.
 
 ## 6. Hand over
 

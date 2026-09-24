@@ -1,0 +1,21 @@
+# The factory verifies itself on every push: the same script as on the laptop (scripts/verify.sh).
+name: verify
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      # Only for `claude plugin validate`, which needs no login and no API key.
+      - run: npm install -g @anthropic-ai/claude-code
+      - run: bash scripts/verify.sh

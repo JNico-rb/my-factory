@@ -9,7 +9,7 @@ Per step of the approved `plan.md`: write the test → run it and watch it fail 
 
 ## Closing a feature
 
-Work through the Closing boxes of its `plan.md`, in order:
+The `sdd:verifier` agent works through the Closing boxes of its `plan.md`, in order, and is the only one that marks them; whoever implemented the plan does not close it:
 
 1. Full suite green and types clean.
 2. Spec: fix it where the code proved it wrong, or confirm it still holds.

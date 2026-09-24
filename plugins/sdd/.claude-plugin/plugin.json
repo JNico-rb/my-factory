@@ -1,13 +1,25 @@
 {
   "name": "sdd",
-  "version": "0.1.0",
-  "description": "Spec-driven development: scaffold a new project with its docs, specs and workflow layers, grill the user to fill its gaps, chart big efforts, plan verification.",
+  "version": "0.2.0",
+  "description": "Spec-driven development with enforced gates: scaffold a project with its docs, specs and workflow layers, grill the user to fill its gaps, guard every write with deterministic hooks, and close each plan through an implementer and an independent verifier.",
   "author": {
     "name": "JNico-rb"
   },
   "repository": "https://github.com/JNico-rb/my-factory",
-  "keywords": ["sdd", "spec-driven-development", "scaffold", "grilling", "verification"],
+  "keywords": [
+    "sdd",
+    "spec-driven-development",
+    "scaffold",
+    "grilling",
+    "verification",
+    "hooks",
+    "guardrails",
+    "tdd"
+  ],
   "dependencies": [
-    { "name": "mattpocock-skills", "marketplace": "claude-plugins-official" }
+    {
+      "name": "mattpocock-skills",
+      "marketplace": "claude-plugins-official"
+    }
   ]
 }

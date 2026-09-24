@@ -29,6 +29,9 @@ Languages and tools for building validators and logic provers:
 
 - [Best SDD tools](https://codemyspec.com/blog/best-spec-driven-development-tools)
 
-las dos herramientas que uso yo para trabajar con grandes respositorios son:
-https://teams.public.onecdn.static.microsoft/evergreen-assets/safelinks/2/atp-safelinks.html 
-[GitHub - repowise-dev/repowise: Codebase intelligence for AI and humans: code health scores, auto-ge…](https://github.com/Graphify-Labs/graphify)
+## Large repositories
+
+The two tools recommended in class for working with large repositories:
+
+- [repowise](https://github.com/repowise-dev/repowise): codebase intelligence for AI and humans, with code health scores.
+- [graphify](https://github.com/Graphify-Labs/graphify): a knowledge graph of the codebase for agents.

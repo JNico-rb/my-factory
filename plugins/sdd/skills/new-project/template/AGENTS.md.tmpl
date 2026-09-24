@@ -47,6 +47,14 @@ Run before the first edit to `docs/*.md`, `specs/` or code. Once per task, not p
 
 A task too big for one session, with the route still unclear → `/sdd:wayfinder` instead: it charts a map of decision tickets in `.scratch/` and grills one ticket per session.
 
+### Guards and roles
+
+The gates above are enforced, not just stated. Two `sdd` plugin hooks run before every write: `guard-secrets` blocks credential-shaped text anywhere, and `guard-plan` blocks writes under the code dirs of `.claude/sdd.json` unless some approved `plan.md` has an open step. A rejection is the gate working: report it and go on with what is allowed; never route around it.
+
+- `sdd:implementer` — one approved plan, step by step, TDD, a commit per green step.
+- `sdd:verifier` — the only one that marks a plan's *Closing* boxes, after tracing every step and running the full suite. FAIL goes back to the implementer at most twice; a third FAIL goes to the user.
+- `sdd:security-auditor` — before a delivery: untrusted-input paths, dependencies, secrets in the history → `docs/security-report.md`.
+
 ### Processes — read the one for the layer you touch
 
 - Changing `docs/*.md` → [workflow/1-docs.md](workflow/1-docs.md)

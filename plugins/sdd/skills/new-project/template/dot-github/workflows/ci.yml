@@ -1,0 +1,27 @@
+# The quality gates of docs/verification.md, on every push and pull request. No job calls a model
+# or uses repository secrets: tests run against doubles, and real-model runs are demonstrations (D).
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      # GAP: per part of the codebase, set up its toolchain and run its lint, type and test commands from the Stack in AGENTS.md, one `- run:` each (e.g. `- uses: astral-sh/setup-uv@v6` then `- run: uv run pytest`).
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # the whole history: a key committed and later deleted is still leaked
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
