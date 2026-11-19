@@ -1,0 +1,12 @@
+{
+  "name": "my-factory",
+  "owner": { "name": "my-factory" },
+  "metadata": { "description": "Mods propios de Claude Code" },
+  "plugins": [
+    {
+      "name": "foundry-gasto",
+      "source": "./mods/foundry-gasto",
+      "description": "Panel con el gasto de Azure AI Foundry: tu gasto personal con límites que cortan al llegar, y el presupuesto del grupo y la suscripción"
+    }
+  ]
+}

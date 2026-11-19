@@ -1,0 +1,40 @@
+# --- Python ---
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# --- Secretos y entorno ---
+.env
+.env.*
+!.env.example
+
+# --- Claude Code (config personal, no compartida) ---
+.claude/settings.local.json
+CLAUDE.local.md
+
+# --- Node / TypeScript (mods) ---
+node_modules/
+*.tsbuildinfo
+
+# --- .NET (contador) ---
+bin/
+obj/
+*.exe
+
+# --- Editor y sistema ---
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log
