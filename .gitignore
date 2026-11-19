@@ -32,7 +32,8 @@ obj/
 *.exe
 
 # --- Editor y sistema ---
-.vscode/
+.vscode/*
+!.vscode/settings.json
 .idea/
 Thumbs.db
 desktop.ini
