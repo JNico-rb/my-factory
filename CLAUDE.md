@@ -15,7 +15,7 @@ Jaime usa Claude Code como **extensión de VS Code** en Windows. Explica cada pa
 
 ## Skills en beta (sandbox)
 
-Este repo es también el sandbox para probar las skills `in-progress` de `mattpocock/skills`, copiadas en `.claude/skills/` desde el commit `5863806`. No se actualizan solas. Solo se invocan a mano con `/<nombre>`.
+Este repo es también el sandbox para probar las skills `in-progress` de `mattpocock/skills`, copiadas en `.claude/skills/` desde el commit `6f7f783` (2026-11-26). No se actualizan solas. Solo se invocan a mano con `/<nombre>`.
 
 Dónde guarda cada una su trabajo:
 

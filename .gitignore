@@ -33,12 +33,12 @@ obj/
 
 # --- Editor y sistema ---
 .vscode/*
-!.vscode/settings.json
 .idea/
 Thumbs.db
 desktop.ini
 .DS_Store
 *.log
+*.code-workspace
 
 # --- Worktrees temporales ---
 .claude/worktrees/
