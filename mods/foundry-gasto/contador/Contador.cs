@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 
 public static class Contador
 {
-    public const string Version = "3";
+    public const string Version = "2";
 
     class Route { public int Port; public string Name = ""; public string Upstream = ""; public string ResourceId = ""; }
     class Price { public double In; public double Out; public double Cached; public bool HasCached; }
@@ -88,16 +88,9 @@ public static class Contador
     static readonly Regex UsageStart = new Regex("\"usage\"\\s*:\\s*\\{");
     static readonly Regex TokenPath = new Regex("/(chat/completions|completions|responses|embeddings|messages)(\\?|$)", RegexOptions.IgnoreCase);
 
-    // The mod's own folder, where this meter was started from ("" when not known).
-    static string Root = "";
-    static DateTime NextOffCheck = DateTime.MinValue;
-
-    public static void Run(string dir) { Run(dir, ""); }
-
-    public static void Run(string dir, string root)
+    public static void Run(string dir)
     {
         Dir = dir;
-        Root = root ?? "";
         Directory.CreateDirectory(Dir);
         bool isFirst;
         Single = new Mutex(true, "Local\\foundry-gasto-contador", out isFirst);
@@ -136,65 +129,9 @@ public static class Contador
         }
         var cfg = Current;
         if (cfg.Stop || (cfg.Version != "" && cfg.Version != Version)) { WriteState(true); Environment.Exit(0); }
-        if (DateTime.UtcNow >= NextOffCheck)
-        {
-            NextOffCheck = DateTime.UtcNow.AddSeconds(10);
-            var why = WhyOff(Root, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".claude"));
-            if (why != "")
-            {
-                Note("apagado: " + why);
-                WriteState(true);
-                Environment.Exit(0);
-            }
-        }
         foreach (var route in cfg.Routes) Listen(route.Port);
         SavePending();
         WriteState(false);
-    }
-
-    /// Why the person turned the mod off, or "" while it is on: a meter must not keep cutting for a mod
-    /// that is off. Read from the user settings of Claude Code (claudeDir\settings.json):
-    /// - the folder the meter was started from is gone (uninstalled);
-    /// - the mod is installed as a plugin and every "foundry-gasto@..." entry of enabledPlugins is false;
-    /// - it was installed from the zip (a folder under claudeDir\mods) and CLAUDE_CODE_PLUGIN_DIRS no longer names it.
-    /// An unreadable settings file says nothing: the meter stays.
-    public static string WhyOff(string root, string claudeDir)
-    {
-        if (root == "") return "";
-        if (!Directory.Exists(root)) return "la carpeta del mod ya no existe";
-        string text;
-        try { text = File.ReadAllText(Path.Combine(claudeDir, "settings.json")); } catch { return ""; }
-        try
-        {
-            using (var doc = JsonDocument.Parse(text, new JsonDocumentOptions { CommentHandling = JsonCommentHandling.Skip, AllowTrailingCommas = true }))
-            {
-                var settings = doc.RootElement;
-                JsonElement plugins, env, dirs;
-                int on = 0, off = 0;
-                if (settings.TryGetProperty("enabledPlugins", out plugins) && plugins.ValueKind == JsonValueKind.Object)
-                    foreach (var p in plugins.EnumerateObject())
-                    {
-                        if (!p.Name.StartsWith("foundry-gasto@", StringComparison.OrdinalIgnoreCase)) continue;
-                        if (p.Value.ValueKind == JsonValueKind.False) off++;
-                        else on++;
-                    }
-                if (off > 0 && on == 0) return "el plugin está desactivado (enabledPlugins)";
-                var full = Path.GetFullPath(root).TrimEnd('\\', '/');
-                var mods = Path.GetFullPath(Path.Combine(claudeDir, "mods")).TrimEnd('\\', '/') + Path.DirectorySeparatorChar;
-                if (on == 0 && full.StartsWith(mods, StringComparison.OrdinalIgnoreCase))
-                {
-                    var listed = settings.TryGetProperty("env", out env) && env.ValueKind == JsonValueKind.Object
-                        && env.TryGetProperty("CLAUDE_CODE_PLUGIN_DIRS", out dirs) && dirs.ValueKind == JsonValueKind.String
-                        ? dirs.GetString() ?? "" : "";
-                    var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    bool isListed = listed.Split(';').Any(d => d.Trim() != "" &&
-                        string.Equals(Path.GetFullPath(Environment.ExpandEnvironmentVariables(d.Trim().Replace("~", home))).TrimEnd('\\', '/'), full, StringComparison.OrdinalIgnoreCase));
-                    if (!isListed) return "CLAUDE_CODE_PLUGIN_DIRS ya no incluye el mod";
-                }
-            }
-        }
-        catch { return ""; }
-        return "";
     }
 
     static Config ParseConfig(string text)

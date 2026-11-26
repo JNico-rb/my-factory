@@ -1,6 +1,6 @@
 {
   "name": "foundry-gasto",
-  "version": "0.6.0",
-  "description": "Panel con el gasto de Azure AI Foundry: tu gasto personal con límites por día, semana y mes que cortan al llegar, y el presupuesto del grupo y la suscripción",
+  "version": "0.5.0",
+  "description": "Panel con el gasto de Azure AI Foundry del proyecto: presupuesto, euros estimados al momento, tokens, llamadas y errores por modelo",
   "types": "./types/index.d.ts"
 }

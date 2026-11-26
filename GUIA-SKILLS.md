@@ -18,11 +18,13 @@ Casi todo el stack es **un flujo principal** de idea a código, con atajos para 
 ```
 
 Atajos de entrada:
+
 - **`/triage`**: issues que llegan en bruto, como un bug que te reporta otra persona.
 - **`/diagnosing-bugs`**: algo roto que no se ve a la primera.
 - **`/wayfinder`**: un proyecto tan grande y difuso que no cabe en una sesión.
 
 Glosario mínimo:
+
 - **Grilling**: entrevista implacable. El agente averigua los hechos y tú tomas las decisiones. Cada pregunta trae una respuesta recomendada; contesta "sí" para aceptarla.
 - **`GLOSSARY.md` y ADRs**: la memoria del proyecto. Las crea `/grill-with-docs` sobre la marcha, en la raíz y en `docs/adr/`.
 - **Tracer-bullet ticket**: un ticket que atraviesa todas las capas de punta a punta, en lugar de un ticket por capa. Cada uno declara qué tickets lo bloquean.
@@ -54,6 +56,7 @@ Cada proyecto prueba un flujo. Están ordenados para que cada uno reutilice lo q
 ```
 /mattpocock-skills:ask-matt Quiero hacer una CLI pequeña en Python para llevar los libros que presto a amigos. ¿Por dónde empiezo?
 ```
+
 **Qué observar:** te recomienda una ruta por el flujo principal. Úsala cuando no sepas qué skill toca.
 
 ### Proyecto 1: flujo principal completo, «Préstamos de libros»
@@ -94,25 +97,26 @@ Solo para algo que de verdad sea grande y difuso. Por ejemplo: «un sistema que 
 
 ### Proyecto 5: las skills beta
 
-| Skill | Prueba concreta | Con qué la combinas |
-|---|---|---|
-| `/loop-me` | `/loop-me` sin argumentos: te entrevista sobre tu semana y detecta tareas repetitivas que se podrían delegar. Escribe en `NOTES.md` y `workflows/*.md`. | Un workflow ya cerrado puede pasar por `/to-spec` → `/to-tickets` para construirlo. |
-| `/writing-fragments` | `/writing-fragments escritura/fragmentos/skills.md` sobre «qué me ha sorprendido probando estas skills». | Material de partida: las salidas de `/retro` de los proyectos 1 y 2. |
-| `/writing-shape` | `/writing-shape escritura/fragmentos/skills.md`: te pregunta dónde guardar el artículo; dile `escritura/articulos/skills.md`. Discute el formato de cada párrafo. | Sale del montón que dejó `/writing-fragments`. |
-| `/writing-beats` | Lo mismo con el mismo montón, pero eligiendo "beats" al estilo «elige tu propia aventura». Compara el artículo que sale con el de `/writing-shape`. | Igual que `/writing-shape`. |
-| `/chief-of-staff` | `/chief-of-staff Objetivo: dejar la CLI de préstamos terminada, con avisos y exportación a CSV`. Delega en subagentes y guarda la memoria en `wiki/`. | Dentro usa `retro`, `to-spec`, `to-tickets` e `implement-spec`, que vienen del plugin. |
-| `/claude-handoff` | Al final de una sesión larga: `/claude-handoff seguir con el ticket 03`. Lanza `claude --bg` y lo ves con `claude agents` en PowerShell. | Es la alternativa en segundo plano a `/handoff`. |
-| `/software-factory` | Junto con `/mattpocock-skills:grill-me`: diseña sobre el papel una factoría de agentes para tu equipo (Azure DevOps cubre tickets, git, runners y orquestador). Solo diseño, no construye nada. | Usa `/grill-me` para las preguntas. |
-| `/setup-ts-deep-modules` | **No se puede probar aquí:** necesita Node y un repo TypeScript. | Junto con `/codebase-design` e `/improve-codebase-architecture`. |
+| Skill                  | Prueba concreta                                                                                                                                                                                      | Con qué la combinas                                                                           |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `/loop-me`           | `/loop-me` sin argumentos: te entrevista sobre tu semana y detecta tareas repetitivas que se podrían delegar. Escribe en `NOTES.md` y `workflows/*.md`.                                       | Un workflow ya cerrado puede pasar por `/to-spec` → `/to-tickets` para construirlo.       |
+| `/writing-fragments` | `/writing-fragments escritura/fragmentos/skills.md` sobre «qué me ha sorprendido probando estas skills».                                                                                        | Material de partida: las salidas de `/retro` de los proyectos 1 y 2.                         |
+| `/writing-shape`     | `/writing-shape escritura/fragmentos/skills.md`: te pregunta dónde guardar el artículo; dile `escritura/articulos/skills.md`. Discute el formato de cada párrafo.                             | Sale del montón que dejó `/writing-fragments`.                                             |
+| `/writing-beats`     | Lo mismo con el mismo montón, pero eligiendo "beats" al estilo «elige tu propia aventura». Compara el artículo que sale con el de `/writing-shape`.                                            | Igual que `/writing-shape`.                                                                  |
+| `/chief-of-staff`    | `/chief-of-staff Objetivo: dejar la CLI de préstamos terminada, con avisos y exportación a CSV`. Delega en subagentes y guarda la memoria en `wiki/`.                                          | Dentro usa `retro`, `to-spec`, `to-tickets` e `implement-spec`, que vienen del plugin. |
+| `/claude-handoff`    | Al final de una sesión larga: `/claude-handoff seguir con el ticket 03`. Lanza `claude --bg` y lo ves con `claude agents` en PowerShell.                                                      | Es la alternativa en segundo plano a `/handoff`.                                             |
+| `/software-factory`  | Junto con `/mattpocock-skills:grill-me`: diseña sobre el papel una factoría de agentes para tu equipo (Azure DevOps cubre tickets, git, runners y orquestador). Solo diseño, no construye nada. | Usa `/grill-me` para las preguntas.                                                          |
 
 ### Proyecto 6: aprendizaje y utilidades sueltas
 
 - **`/teach`**, en una sesión aparte. Ejecuta esto en PowerShell:
+
   ```powershell
   New-Item -ItemType Directory -Force "C:\Users\jaime.rodriguez\my-projects\learning\aprender\git-interno"
   Set-Location "C:\Users\jaime.rodriguez\my-projects\learning\aprender\git-interno"
   claude
   ```
+
   Después lanza `/mattpocock-skills:teach cómo funciona git por dentro`. Crea `MISSION.md`, lecciones en HTML y registros de lo aprendido. Es la que mejor encaja con este repo.
 - **`/research`**: `/mattpocock-skills:research qué diferencia hay entre plugin y skill suelta en Claude Code`. Lo investiga un agente en segundo plano con fuentes primarias y deja un `.md` con citas.
 - **`/wait-what`**: lánzalo cuando una respuesta te suene a jerga. Te la repite en lenguaje claro.

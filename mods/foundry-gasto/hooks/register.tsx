@@ -21,7 +21,7 @@ import type {
 const EVERY_MS = 5 * 60 * 1000
 const METER_EVERY_MS = 3_000
 /** The version of contador/Contador.cs this module expects; a meter of another version leaves on its own. */
-const METER_VERSION = '3'
+const METER_VERSION = '2'
 const FIRST_PORT = 8787
 const LIMITS_KEY = 'limits'
 const PANE = 'foundry-gasto'

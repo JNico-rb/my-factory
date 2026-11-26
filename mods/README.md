@@ -17,17 +17,18 @@ En `%USERPROFILE%\.claude\settings.json`, dentro de `enabledPlugins`:
 ```
 
 `false` lo apaga. Hace falta cerrar y volver a abrir Claude Code para que cargue o deje de cargar.
-El contador de `foundry-gasto` lee ese interruptor y se apaga solo, en unos 10 segundos, al ponerlo
-en `false`.
+
+`foundry-gasto` (0.5.0) arranca un contador en segundo plano que **no** se apaga solo al ponerlo en
+`false`: si estuvo encendido, páralo a mano o reinicia el equipo:
+
+```powershell
+Get-CimInstance Win32_Process -Filter "Name='pwsh.exe'" | Where-Object CommandLine -like '*contador.ps1*' | ForEach-Object { Stop-Process -Id $_.ProcessId }
+```
 
 ## Editar un mod
 
 Claude Code lee el mod desde esta carpeta, no desde una copia: edita aquí y ejecuta
-`/reload-plugins` en una sesión (o reinicia) para que coja los cambios. Pruebas y validación:
-
-```powershell
-claude plugin test .\mods\foundry-gasto
-```
+`/reload-plugins` en una sesión (o reinicia) para que coja los cambios. Validación:
 
 ```powershell
 claude plugin validate .\mods\foundry-gasto
@@ -39,6 +40,15 @@ claude plugin validate .\mods\foundry-gasto
 2. Añade una entrada en `.claude-plugin/marketplace.json` con `"source": "./mods/<nombre>"`.
 3. `claude plugin marketplace update my-factory`, y después `claude plugin install <nombre>@my-factory`.
 4. Añade su fila a la tabla de arriba.
+
+## Zips para compañeros
+
+`dist/` guarda los zips que se pasan a otras personas: se instalan sin marketplace, con el
+`instalar.ps1` y el `LEEME.md` que llevan dentro (por `CLAUDE_CODE_PLUGIN_DIRS`, sin interruptor).
+
+| Zip | Versión | Nota |
+|---|---|---|
+| `dist/foundry-gasto-0.5.0.zip` | 0.5.0 | El mismo mod que `foundry-gasto/`. Su contador no se apaga solo al desactivar el mod. |
 
 ## Instalar el marketplace en otro equipo
 
